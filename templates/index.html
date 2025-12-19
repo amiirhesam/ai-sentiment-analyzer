@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Sentiment Analysis Tool 🤖</h1>
+        <p>Enter any text to analyze its sentiment (Positive, Negative, or Neutral).</p>
+        <form method="POST">
+            <textarea name="text" placeholder="Type your text here..." required></textarea>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if result %}
+        <div class="result" style="border-color: {{ result.color }}">
+            <h2>Result:</h2>
+            <p><strong>Text:</strong> {{ result.text }}</p>
+            <p><strong>Sentiment:</strong> <span style="color: {{ result.color }}">{{ result.sentiment }}</span></p>
+            <p><strong>Confidence:</strong> {{ result.score }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
