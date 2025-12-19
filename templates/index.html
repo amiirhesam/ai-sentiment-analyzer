@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Sentiment Analyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>AI Sentiment Analysis Tool 🤖</h1>
-        <p class="description">Enter any text to analyze its sentiment (Positive, Negative, or Neutral).</p>
+        <h1><i class="fas fa-brain"></i> AI Sentiment Analyzer</h1>
+        <p class="description">Type in text and let AI detect if it's Positive, Negative, or Neutral!</p>
         <form method="POST">
-            <textarea name="text" placeholder="Type your text here..." required></textarea>
-            <button type="submit">Analyze</button>
+            <textarea name="text" placeholder="Enter your text here..."></textarea>
+            <button type="submit"><i class="fas fa-search"></i> Analyze</button>
         </form>
 
         {% if result %}
-        <div class="result animate-result" style="border-color: {{ result.color }}; color: {{ result.color }}">
-            <h2>Result:</h2>
+        <div class="result" style="border-left: 5px solid {{ result.color }};">
+            <h2><i class="fas fa-chart-bar"></i> Analysis Result</h2>
             <p><strong>Text:</strong> {{ result.text }}</p>
-            <p><strong>Sentiment:</strong> <span class="sentiment-icon">{{ result.sentiment }}</span></p>
-            <p><strong>Confidence:</strong></p>
+            <p><strong>Sentiment:</strong> <span class="sentiment" style="color: {{ result.color }};">{{ result.sentiment }}</span></p>
+            <p><strong>Confidence:</strong> {{ result.score }}%</p>
             <div class="progress-bar">
-                <div class="progress" style="width: {{ result.score }}%; background-color: {{ result.color }}"></div>
+                <div class="progress" style="width: {{ result.score }}%; background: {{ result.color }};"></div>
             </div>
-            <span class="confidence-text">{{ result.score }}%</span>
         </div>
         {% endif %}
     </div>
